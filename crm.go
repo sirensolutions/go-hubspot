@@ -35,7 +35,7 @@ func newCRM(c *Client) *CRM {
 			client:   c,
 		},
 		Owner: &OwnerServiceOp{
-			ownerPath: fmt.Sprintf("%s/%s/%s", crmPath, objectsBasePath, ownerBasePath),
+			ownerPath: fmt.Sprintf("%s/%s", crmPath, ownerBasePath),
 			client:    c,
 		},
 		Imports: &CrmImportsServiceOp{
