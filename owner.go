@@ -26,6 +26,12 @@ var _ OwnerService = (*OwnerServiceOp)(nil)
 
 // Beware that the Owner object uses a different capitalisation convention than Contact
 type Owner struct {
+	Email     *HsStr `json:"email,omitempty"`
+	FirstName *HsStr `json:"firstName,omitempty"` // beware capitalisation
+	LastName  *HsStr `json:"lastName,omitempty"`  // beware capitalisation
+}
+
+type OwnerXX struct {
 	Address                                     *HsStr  `json:"address,omitempty"`
 	AnnualRevenue                               *HsStr  `json:"annualrevenue,omitempty"`
 	City                                        *HsStr  `json:"city,omitempty"`
@@ -172,6 +178,12 @@ type Owner struct {
 }
 
 var defaultOwnerFields = []string{
+	"email",
+	"firstName",
+	"lastName",
+}
+
+var defaultOwnerXXFields = []string{
 	"address",
 	"annualrevenue",
 	"city",
