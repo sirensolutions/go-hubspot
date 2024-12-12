@@ -21,8 +21,8 @@ type CrmOwner struct {
 	LastName                *HsStr          `json:"lastName,omitempty"`
 	Type                    *HsStr          `json:"type,omitempty"`
 	UpdatedAt               *HsTime         `json:"updatedAt,omitempty"`
-	UserID                  *HsStr          `json:"userId,omitempty"`
-	UserIdIncludingInactive *HsStr          `json:"userIdIncludingInactive,omitempty"`
+	UserID                  *HsInt          `json:"userId,omitempty"`
+	UserIdIncludingInactive *HsInt          `json:"userIdIncludingInactive,omitempty"`
 	Teams                   *[]CrmOwnerTeam `json:"teams,omitempty"`
 }
 
