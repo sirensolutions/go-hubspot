@@ -42,11 +42,11 @@ type CrmOwnerTeam struct {
 // CrmOwnersService is an interface of CRM owners endpoints of the HubSpot API.
 // Reference: https://developers.hubspot.com/docs/api/crm/owners
 type CrmOwnersService interface {
-	List(objectType string) (*CrmOwnersList, error)
-	Create(objectType string, reqData interface{}) (*CrmOwner, error)
-	Get(objectType string, ownerName string) (*CrmOwner, error)
-	Delete(objectType string, ownerName string) error
-	Update(objectType string, ownerName string, reqData interface{}) (*CrmOwner, error)
+	List() (*CrmOwnersList, error)
+	Create(reqData interface{}) (*CrmOwner, error)
+	Get(ownerId string) (*CrmOwner, error)
+	Delete(ownerId string) error
+	Update(ownerId string, reqData interface{}) (*CrmOwner, error)
 }
 
 // CrmOwnersServiceOp handles communication with the CRM owners endpoint.
@@ -57,41 +57,41 @@ type CrmOwnersServiceOp struct {
 
 var _ CrmOwnersService = (*CrmOwnersServiceOp)(nil)
 
-func (s *CrmOwnersServiceOp) List(objectType string) (*CrmOwnersList, error) {
+func (s *CrmOwnersServiceOp) List() (*CrmOwnersList, error) {
 	var resource CrmOwnersList
-	path := fmt.Sprintf("%s/%s", s.crmOwnersPath, objectType)
+	path := ""
 	if err := s.client.Get(path, &resource, nil); err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-func (s *CrmOwnersServiceOp) Get(objectType, ownerName string) (*CrmOwner, error) {
+func (s *CrmOwnersServiceOp) Get(ownerId string) (*CrmOwner, error) {
 	var resource CrmOwner
-	path := fmt.Sprintf("%s/%s/%s", s.crmOwnersPath, objectType, ownerName)
+	path := fmt.Sprintf("%s/%s", s.crmOwnersPath, ownerId)
 	if err := s.client.Get(path, &resource, nil); err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-func (s *CrmOwnersServiceOp) Create(objectType string, reqData interface{}) (*CrmOwner, error) {
+func (s *CrmOwnersServiceOp) Create(reqData interface{}) (*CrmOwner, error) {
 	var resource CrmOwner
-	path := fmt.Sprintf("%s/%s", s.crmOwnersPath, objectType)
+	path := ""
 	if err := s.client.Post(path, reqData, &resource); err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-func (s *CrmOwnersServiceOp) Delete(objectType string, ownerName string) error {
-	path := fmt.Sprintf("%s/%s/%s", s.crmOwnersPath, objectType, ownerName)
+func (s *CrmOwnersServiceOp) Delete(ownerId string) error {
+	path := fmt.Sprintf("%s/%s", s.crmOwnersPath, ownerId)
 	return s.client.Delete(path, nil)
 }
 
-func (s *CrmOwnersServiceOp) Update(objectType string, ownerName string, reqData interface{}) (*CrmOwner, error) {
+func (s *CrmOwnersServiceOp) Update(ownerId string, reqData interface{}) (*CrmOwner, error) {
 	var resource CrmOwner
-	path := fmt.Sprintf("%s/%s/%s", s.crmOwnersPath, objectType, ownerName)
+	path := fmt.Sprintf("%s/%s", s.crmOwnersPath, ownerId)
 	if err := s.client.Patch(path, reqData, &resource); err != nil {
 		return nil, err
 	}
