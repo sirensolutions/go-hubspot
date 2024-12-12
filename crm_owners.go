@@ -26,13 +26,6 @@ type CrmOwner struct {
 	Teams                   *[]CrmOwnerTeam `json:"teams,omitempty"`
 }
 
-type CrmOwnerModificationMeta struct {
-	Archivable       *HsBool `json:"archivable,omitempty"`
-	ReadOnlyDefition *HsBool `json:"readOnlyDefinition,omitempty"`
-	ReadOnlyValue    *HsBool `json:"readOnlyValue,omitempty"`
-	ReadOnlyOptions  *HsBool `json:"readOnlyOptions,omitempty"`
-}
-
 type CrmOwnerTeam struct {
 	Id      *HsStr  `json:"id,omitempty"`
 	Name    *HsStr  `json:"name,omitempty"`
