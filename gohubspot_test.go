@@ -440,7 +440,7 @@ func TestClient_CreateAndDo(t *testing.T) {
 				crm:        nil,
 			},
 			args: args{
-				method:  http.MethodGet,
+				method:  http.MethodPost,
 				relPath: "crm/v3/objects/deals",
 				data: &hubspot.Deal{
 					Amount:      hubspot.NewString("1500.00"),
