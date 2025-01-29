@@ -86,6 +86,14 @@ func (ht *HsTime) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// MarshalJSON implemented json.Marshaler
+func (ht *HsTime) MarshalJSON() (b []byte, err error) {
+	if b, err = json.Marshal(ht.String()); err != nil {
+		return b, err
+	}
+	return b, err
+}
+
 // String implemented Stringer.
 func (ht *HsTime) String() string {
 	if ht == nil {
